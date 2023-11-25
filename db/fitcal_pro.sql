@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Store (
 );
 
 
-CREATE TABLE IF NOT EXISTS Vegan_Alternatives (
+CREATE TABLE IF NOT EXISTS VeganAlternatives (
     alternativeID INT AUTO_INCREMENT PRIMARY KEY,
     name          VARCHAR(50),
     price         DECIMAL(10, 2), # supports up to $99,999,999.99
@@ -41,6 +41,34 @@ CREATE TABLE IF NOT EXISTS Ingredients (
     price        DECIMAL(10, 2), # supports up to $99,999,999.99
     calories     INT,
     quantity     INT
+);
+
+CREATE TABLE IF NOT EXISTS VeganTips (
+    tipID INT AUTO_INCREMENT PRIMARY KEY,
+    tip TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Restaurant (
+    restaurantID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    cuisine VARCHAR(50),
+    rating INT, # 1-10
+    street VARCHAR(50),
+    city VARCHAR(50),
+    country VARCHAR(50),
+    zipcode INT
+);
+
+CREATE TABLE IF NOT EXISTS VeganMeals (
+    veganMealID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    calories INT
+);
+
+CREATE TABLE IF NOT EXISTS Meals (
+    veganMealID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    calories INT
 );
 
 

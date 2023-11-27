@@ -30,12 +30,11 @@ CREATE TABLE IF NOT EXISTS Nutrients
 CREATE TABLE IF NOT EXISTS Ingredients
 (
     ingredientID INT AUTO_INCREMENT PRIMARY KEY,
-    name         INT,
+    name         VARCHAR(50),
     price        DECIMAL(10, 2), # supports up to $99,999,999.99
     calories     INT,
     quantity     INT,
-    isVegan      BOOLEAN,
-    FOREIGN KEY (name) REFERENCES Nutrients (nutrientID) ON UPDATE cascade ON DELETE cascade
+    isVegan      BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS Store_Ingredients
@@ -165,7 +164,7 @@ CREATE TABLE IF NOT EXISTS DayTracker
 
 CREATE TABLE IF NOT EXISTS Profile
 (
-    username         VARCHAR(50) AUTO_INCREMENT PRIMARY KEY,
+    username         VARCHAR(50) PRIMARY KEY,
     name             VARCHAR(50),
     bio              TEXT,
     registerDateTime DATETIME,

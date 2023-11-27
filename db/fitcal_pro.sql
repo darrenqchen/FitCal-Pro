@@ -75,16 +75,16 @@ CREATE TABLE IF NOT EXISTS Meals
     calories    INT,
     ingredients INT,
     isVegan     BOOLEAN,
-    FOREIGN KEY (ingredients) REFERENCES Ingredients (ingredientID) ON UPDATE cascade ON DELETE cascade
+    mealTrackerID INT,
+    FOREIGN KEY (ingredients) REFERENCES Ingredients (ingredientID) ON UPDATE cascade ON DELETE cascade,
+    FOREIGN KEY (mealTrackerID) REFERENCES MealTrackers (mealTrackerID) ON UPDATE cascade ON DELETE cascade
 );
 
 CREATE TABLE IF NOT EXISTS MealTrackers
 (
     mealTrackerID INT AUTO_INCREMENT PRIMARY KEY,
     dateTime      DATETIME,
-    mealID        INT,
     dayTrackerID  INT,
-    FOREIGN KEY (mealID) REFERENCES Meals (mealID) ON UPDATE cascade ON DELETE cascade,
     FOREIGN KEY (dayTrackerID) REFERENCES DayTrackers (dayTrackerID) ON UPDATE cascade ON DELETE cascade
 );
 

@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS Meals
 CREATE TABLE IF NOT EXISTS MealTrackers
 (
     mealTrackerID INT AUTO_INCREMENT PRIMARY KEY,
-    dateTime      DATETIME,
+    mealDateTime      DATETIME,
     dayTrackerID  INT,
     FOREIGN KEY (dayTrackerID) REFERENCES DayTrackers (dayTrackerID) ON UPDATE cascade ON DELETE cascade
 );
@@ -277,8 +277,8 @@ INSERT INTO Meals (name, calories, ingredients, isVegan,  mealTrackerID) VALUES 
 INSERT INTO Meals (name, calories, ingredients, isVegan,  mealTrackerID) VALUES ('Salad', 20, 1, 1, 2);
 
 -- MealTrackers
-INSERT INTO MealTrackers (dateTime, dayTrackerID) VALUES (NOW(), 1);
-INSERT INTO MealTrackers (dateTime, dayTrackerID) VALUES (NOW(), 2);
+INSERT INTO MealTrackers (mealDateTime, dayTrackerID) VALUES (NOW(), 1);
+INSERT INTO MealTrackers (mealDateTime, dayTrackerID) VALUES (NOW(), 2);
 
 -- DayTrackers
 INSERT INTO DayTrackers (date, username)

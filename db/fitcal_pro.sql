@@ -107,12 +107,9 @@ CREATE TABLE IF NOT EXISTS Measurements (
     measureID    INT AUTO_INCREMENT PRIMARY KEY,
     waterIntake  FLOAT,
     hoursSlept   FLOAT,
-    heightFeet   INT,
-    -- the 5 in 5'10''
-    heightInches INT,
-    -- the 10 in 5'10''
-    weight       FLOAT,
-    -- lbs
+    heightFeet   INT, -- the 5 in 5'10''
+    heightInches INT, -- the 10 in 5'10''
+    weight       FLOAT, -- lbs
     dayTrackerID INT,
     FOREIGN KEY (dayTrackerID) REFERENCES DayTrackers (dayTrackerID) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -129,7 +126,7 @@ CREATE TABLE IF NOT EXISTS Routines (
     routineID    INT AUTO_INCREMENT PRIMARY KEY,
     name         VARCHAR(50),
     difficulty   FLOAT,
-    timeDuration TIME
+    timeDuration INT -- minutes
 );
 
 CREATE TABLE IF NOT EXISTS Exercises (

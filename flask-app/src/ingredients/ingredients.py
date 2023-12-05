@@ -2,13 +2,13 @@ from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
-exercises = Blueprint('exercises', __name__)
+ingredients = Blueprint('ingredients', __name__)
 
 # Get all exercises from the DB
-@exercises.route('/exercises', methods=['GET'])
-def get_exercises():
+@ingredients.route('/ingredients', methods=['GET'])
+def get_ingredients():
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT name, weight, reps, difficulty, equipment, targetArea FROM Exercises')
+    cursor.execute('SELECT name, price, calories, quantity, isVegan FROM Ingredients')
     column_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -20,9 +20,9 @@ def get_exercises():
     return the_response
 
 # Gets a certain exercise from the DB
-@exercises.route('/exercises/<id>', methods=['GET'])
-def get_excercise_detail(id):
-    query = 'SELECT exerciseID, name, weight, reps, difficulty, equipment, targetArea FROM Exercises WHERE exerciseID = ' + str(id)
+@ingredients.route('/ingredients/<id>', methods=['GET'])
+def get_ingredients_detail(id):
+    query = 'SELECT ingredientID, name, price, calories, quantity, isVegan FROM Ingredients WHERE ingredientID = ' + str(id)
     current_app.logger.info(query)
 
     cursor = db.get_db().cursor()

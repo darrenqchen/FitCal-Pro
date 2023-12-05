@@ -35,7 +35,6 @@ def create_app():
     # Import the various Blueprint Objects
     from src.customers.customers import customers
     from src.products.products  import products
-    from src.ingredients.ingredients  import ingredients
     from src.meals.meals  import meals
     from src.routines.routines import routines
     from src.stores.stores  import stores
@@ -44,7 +43,6 @@ def create_app():
     # and give a url prefix to each
     app.register_blueprint(customers,       url_prefix='/c')
     app.register_blueprint(products,        url_prefix='/p')
-    app.register_blueprint(ingredients,     url_prefix='/i')
     app.register_blueprint(meals,           url_prefix='/m')
     app.register_blueprint(routines,        url_prefix='/r')
     app.register_blueprint(stores,          url_prefix='/s')

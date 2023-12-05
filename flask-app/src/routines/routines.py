@@ -20,9 +20,9 @@ def get_exercises():
     return the_response
 
 # Gets a certain exercise from the DB
-@routines.route('/exercises/<id>', methods=['GET'])
-def get_excercise_detail(id):
-    query = 'SELECT exerciseID, name, weight, reps, difficulty, equipment, targetArea FROM Exercises WHERE exerciseID = ' + str(id)
+@routines.route('/exercises/<exerciseID>', methods=['GET'])
+def get_excercise_detail(exerciseID):
+    query = 'SELECT exerciseID, name, weight, reps, difficulty, equipment, targetArea FROM Exercises WHERE exerciseID = ' + str(exerciseID)
     current_app.logger.info(query)
 
     cursor = db.get_db().cursor()
@@ -35,7 +35,7 @@ def get_excercise_detail(id):
     return jsonify(json_data)
 
 # Adding an exercise
-@meals.route('/exercises', methods=['POST'])
+@routines.route('/exercises', methods=['POST'])
 def add_new_exercise():
     
     # collecting data from the request object 
@@ -51,7 +51,7 @@ def add_new_exercise():
     targetArea = the_data['targetArea']
 
     # Constructing the query
-    query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) values ("${name}", "${weight}", "${reps}", "${difficulty}", "${equipment}", "${targetArea}")'
+    query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) values ("{name}", "{weight}", "{reps}", "{difficulty}", "{equipment}", "{targetArea}")'
     current_app.logger.info(query)
 
     # executing and committing the insert statement 
@@ -60,6 +60,21 @@ def add_new_exercise():
     db.get_db().commit()
     
     return 'Success!'
+
+# Deletes a given exercise
+@routines.route('/exercises/<exerciseID>', methods=['DELETE'])
+def delete_exercise(exerciseID):
+   query = '''
+       DELETE
+       FROM Exercises
+       WHERE exerciseID = {0};
+   '''.format(exerciseID)
+  
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+  
+   db.get_db().commit()
+   return "successfully deleted exercise #{0}!".format(exerciseID)
 
 # # Get all routines from the DB
 # @routines.route('/routines', methods=['GET'])

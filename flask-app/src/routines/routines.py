@@ -61,6 +61,32 @@ def add_new_exercise():
     
     return 'Success!'
 
+# Updating an exercise
+@routines.route('/exercises/<exerciseID>', methods=['PUT'])
+def update_exercise(exerciseID):
+    
+    # collecting data from the request object 
+    the_data = request.json
+    current_app.logger.info(the_data)
+    
+    # extracting the variable
+    name = the_data['name']
+    weight = the_data['weight']
+    reps = the_data['reps']
+    difficulty = the_data['difficulty']
+    equipment = the_data['equipment']
+    targetArea = the_data['targetArea']
+
+    # Constructing the query
+    query = f'UPDATE Exercises SET name = "{name}", weight = "{weight}", reps = "{reps}", difficulty = "{difficulty}", equipment = "{equipment}", targetArea = "{targetArea}" WHERE exerciseID = {0};'.format(exerciseID)
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return "Successfully updated exercise #{0}!".format(exerciseID)
+
 # Deletes a given exercise
 @routines.route('/exercises/<exerciseID>', methods=['DELETE'])
 def delete_exercise(exerciseID):
@@ -74,7 +100,7 @@ def delete_exercise(exerciseID):
    cursor.execute(query)
   
    db.get_db().commit()
-   return "successfully deleted exercise #{0}!".format(exerciseID)
+   return "Successfully deleted exercise #{0}!".format(exerciseID)
 
 # # Get all routines from the DB
 # @routines.route('/routines', methods=['GET'])

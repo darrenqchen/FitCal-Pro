@@ -71,6 +71,38 @@ def get_nutrient_detail(id):
    return jsonify(json_data)
 
 
+# Get all vegan tips from the DB
+@meals.route('/vegantips', methods=['GET'])
+def get_vegantips():
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT tipID, tip FROM VeganTips')
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+
+# Gets a certain vegan tip from the DB
+@meals.route('/vegantips/<id>', methods=['GET'])
+def get_vegantip_detail(id):
+   query = 'SELECT tipID, tip FROM VeganTips WHERE tipID = ' + str(id)
+   current_app.logger.info(query)
+
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   column_headers = [x[0] for x in cursor.description]
+   json_data = []
+   the_data = cursor.fetchall()
+   for row in the_data:
+       json_data.append(dict(zip(column_headers, row)))
+   return jsonify(json_data)
+
+
 # Deletes a given meal
 @meals.route('/meals/<mealID>', methods=['DELETE'])
 def delete_meal(mealID):

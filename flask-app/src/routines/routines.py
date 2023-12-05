@@ -78,7 +78,7 @@ def update_exercise(exerciseID):
     targetArea = the_data['targetArea']
 
     # Constructing the query
-    query = f'UPDATE Exercises SET name = "{name}", weight = "{weight}", reps = "{reps}", difficulty = "{difficulty}", equipment = "{equipment}", targetArea = "{targetArea}" WHERE exerciseID = {0};'.format(exerciseID)
+    query = f'UPDATE Exercises SET name = "{name}", weight = {weight}, reps = {reps}, difficulty = {difficulty}, equipment = "{equipment}", targetArea = "{targetArea}" WHERE exerciseID = {exerciseID};'
 
     # executing and committing the insert statement 
     cursor = db.get_db().cursor()

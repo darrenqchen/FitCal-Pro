@@ -38,7 +38,6 @@ def get_ingredient_detail(id):
    return jsonify(json_data)
 
 
-# TODO fix serializing time and test
 # Get a certain recipe
 @meals.route('/recipes/<id>', methods=['GET'])
 def get_recipe_detail(id):

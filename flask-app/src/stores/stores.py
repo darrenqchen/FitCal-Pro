@@ -21,7 +21,7 @@ def get_stores():
     return the_response
 
 # Get store details from a particular storeID
-@meals.route('/stores/<storeID>', methods=['GET'])
+@stores.route('/stores/<storeID>', methods=['GET'])
 def get_store_detail(storeID):
     query = 'SELECT storeID, name, rating, street, city, zip, country FROM Stores WHERE id = ' + str(storeID)
     current_app.logger.info(query)
@@ -36,7 +36,7 @@ def get_store_detail(storeID):
     return jsonify(json_data)
 
 # Deletes a given store
-@meals.route('/stores/<storeID>', methods=['DELETE'])
+@stores.route('/stores/<storeID>', methods=['DELETE'])
 def delete_meal(storeID):
     query = '''
         DELETE

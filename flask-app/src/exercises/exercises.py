@@ -22,7 +22,7 @@ def get_exercises():
 # Gets a certain exercise from the DB
 @exercises.route('/exercises/<id>', methods=['GET'])
 def get_excercise_detail(id):
-    query = 'SELECT exerciseID, name, weight, reps, difficulty, equipment, targetArea FROM Exercises WHERE id = ' + str(id)
+    query = 'SELECT exerciseID, name, weight, reps, difficulty, equipment, targetArea FROM Exercises WHERE exerciseID = ' + str(id)
     current_app.logger.info(query)
 
     cursor = db.get_db().cursor()

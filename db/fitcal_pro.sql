@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Recipes (
     servingSize INT,
     allergens   TEXT,
     calories    INT,
-    timeToMake  TIME,
+    timeToMake  INT, -- in minutes
     steps       TEXT,
     isVegan     BOOLEAN
 );

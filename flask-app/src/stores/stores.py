@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
@@ -23,7 +23,7 @@ def get_stores():
 # Get store details from a particular storeID
 @stores.route('/stores/<storeID>', methods=['GET'])
 def get_store_detail(storeID):
-    query = 'SELECT storeID, name, rating, street, city, zip, country FROM Stores WHERE id = ' + str(storeID)
+    query = 'SELECT storeID, name, rating, street, city, zip, country FROM Stores WHERE storeID = ' + str(storeID)
     current_app.logger.info(query)
 
     cursor = db.get_db().cursor()
@@ -37,18 +37,14 @@ def get_store_detail(storeID):
 
 # Deletes a given store
 @stores.route('/stores/<storeID>', methods=['DELETE'])
-def delete_meal(storeID):
+def delete_store(storeID):
     query = '''
         DELETE
         FROM Stores
         WHERE storeID = {0};
     '''.format(storeID)
     
-    # grab order_id and previous drink price for the given drink
-    storeInfo = get_store_detail(storeID)
-    
     cursor = db.get_db().cursor()
-    cursor.execute(order_query)
     cursor.execute(query)
     
     db.get_db().commit()
@@ -62,22 +58,22 @@ def add_new_store():
     the_data = request.json
     current_app.logger.info(the_data)
     #extracting the variable
-    name = the_data['store_name']
-    rating = the_data['store_rating']
-    street = the_data['store_street']
-    city = the_data['store_city']
-    store_zip = the_data['store_zip']
-    country = the_data['store_country']
+    name = the_data['name']
+    rating = the_data['rating']
+    street = the_data['street']
+    city = the_data['city']
+    zip = the_data['zip']
+    country = the_data['country']
     
 
     # Constructing the query
-    query = 'insert into products (store_name, rating, street, city, store_zip, country) values ("'
+    query = 'insert into Stores (name, rating, street, city, zip, country) values ("'
     query += name + '", "'
-    query += rating + '", "'
-    query += street + '", '
-    query += city + '", '
-    query += store_zip + '", '
-    query += country + ')'
+    query += str(rating) + '", "'
+    query += street + '", "'
+    query += city + '", "'
+    query += zip + '", "'
+    query += country + '")'
     current_app.logger.info(query)
 
     # executing and committing the insert statement 

@@ -51,7 +51,7 @@ def add_new_exercise():
     targetArea = the_data['targetArea']
 
     # Constructing the query
-    query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) values ("{name}", "{weight}", "{reps}", "{difficulty}", "{equipment}", "{targetArea}")'
+    query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) values ("{name}", {weight}, {reps}, {difficulty}, "{equipment}", "{targetArea}")'
     current_app.logger.info(query)
 
     # executing and committing the insert statement 
@@ -147,7 +147,7 @@ def add_new_routine():
     timeDuration = the_data['timeDuration']
 
     # Constructing the query
-    query = f'INSERT INTO Routines (name, difficulty, timeDuration) values ("{name}", "{difficulty}", {timeDuration})'
+    query = f'INSERT INTO Routines (name, difficulty, timeDuration) values ("{name}", {difficulty}, {timeDuration})'
     current_app.logger.info(query)
 
     # executing and committing the insert statement 

@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS Measurements (
 
 CREATE TABLE IF NOT EXISTS WorkoutTrackers (
     workoutID     INT AUTO_INCREMENT PRIMARY KEY,
-    timeDuration  TIME,
+    timeDuration  INT, -- minutes
     caloriesBurnt INT,
     dayTrackerID  INT,
     FOREIGN KEY (dayTrackerID) REFERENCES DayTrackers (dayTrackerID) ON UPDATE CASCADE ON DELETE CASCADE

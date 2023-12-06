@@ -38,6 +38,7 @@ def create_app():
     from src.meals.meals  import meals
     from src.routines.routines import routines
     from src.stores.stores  import stores
+    from src.tempTrackers.tempTrackers  import trackers
 
     # Register the routes from each Blueprint with the app object
     # and give a url prefix to each
@@ -46,6 +47,7 @@ def create_app():
     app.register_blueprint(meals,           url_prefix='/m')
     app.register_blueprint(routines,        url_prefix='/r')
     app.register_blueprint(stores,          url_prefix='/s')
+    app.register_blueprint(trackers,        url_prefix='/t')
 
     # Don't forget to return the app object
     return app

@@ -50,11 +50,8 @@ def add_new_exercise():
     equipment = the_data['equipment']
     targetArea = the_data['targetArea']
 
-
     # Constructing the query 
     query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) VALUES ("{name}", {weight}, {reps}, {difficulty}, "{equipment}", "{targetArea}")'
-
-
     current_app.logger.info(query)
 
     # executing and committing the insert statement 

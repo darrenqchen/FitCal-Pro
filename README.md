@@ -1,6 +1,19 @@
 # FitCal Pro
 FitCal Pro is a versatile fitness tracker catering to diverse goals, from weight loss to professional sports. With an engaging user interface inspired by social media, it incorporates a dedicated progress tracker and a convenient 'new post' button for effortless logging of workouts and meals. The platform dynamically showcases personalized insights, including current goals, progress, and achievements based on user-logged data, enhancing the overall fitness journey.
 
+## Overview
+
+Video:
+
+Appsmith repo: https://github.com/mdevine6427/FitCal-AppSmith
+
+- Our application routes are split into 4 different blueprints:
+    - Meals:
+    - Fitness:
+    - Tracking: Holds all the data for the trackers
+    - Stores:
+
+
 
 ## MySQL + Flask Project
 
@@ -17,6 +30,10 @@ This repo contains a setup for spinning up 3 Docker containers:
 1. In a terminal or command prompt, navigate to the folder with the `docker-compose.yml` file.  
 1. Build the images with `docker compose build`
 1. Start the containers with `docker compose up`.  To run in detached mode, run `docker compose up -d`. 
+
+- To connect to the database container use port 3200
+- To connect to the web container use port 8001
+- To connect to the appsmith container use port 8080
 
 
 

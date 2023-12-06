@@ -87,7 +87,7 @@ def add_new_store():
 @stores.route('/restaurants', methods=['GET'])
 def get_restaurantID():
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT restaurantID, name, rating, street, city, zip, country FROM Restaurants')
+    cursor.execute('SELECT restaurantID, name, cuisine, rating, street, city, zip, country FROM Restaurants')
     column_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -101,7 +101,7 @@ def get_restaurantID():
 # Get Restaurants details from a particular restaurantID
 @stores.route('/restaurants/<restaurantID>', methods=['GET'])
 def get_restaurantID_detail(restaurantID):
-    query = 'SELECT restaurantID, name, rating, street, city, zip, country FROM Restaurants WHERE restaurantID = ' + str(restaurantID)
+    query = 'SELECT restaurantID, name, cuisine, rating, street, city, zip, country FROM Restaurants WHERE restaurantID = ' + str(restaurantID)
     current_app.logger.info(query)
 
     cursor = db.get_db().cursor()

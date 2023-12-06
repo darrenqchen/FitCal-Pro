@@ -252,9 +252,6 @@ def add_new_nutrient():
    cursor.execute(query)
    db.get_db().commit()
   
-<<<<<<< Updated upstream
-   return 'Success!'
-=======
    return 'Success!'
 
 #====VeganTips====
@@ -310,4 +307,3 @@ def update_vegantip(id):
     db.get_db().commit()
 
     return "Successfully updated vegan tip #{0}!".format(id)
->>>>>>> Stashed changes

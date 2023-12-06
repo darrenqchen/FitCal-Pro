@@ -140,7 +140,7 @@ def add_measurement():
     return "Successfully created measurements!"
 
 # Updates specified measurement
-@trackers.route('/measurement/<measureID>', methods=['PUT'])
+@trackers.route('/measurements/<measureID>', methods=['PUT'])
 def update_measurement(measureID):
     # collecting data from the request object 
     the_data = request.json
@@ -165,7 +165,7 @@ def update_measurement(measureID):
     return "Successfully updated measurement #{0}!".format(measureID)
 
 # Delete specified measurement
-@trackers.route('/measurement/<measureID>', methods=['DELETE'])
+@trackers.route('/measurements/<measureID>', methods=['DELETE'])
 def delete_measurement(measureID):
    query = '''
        DELETE

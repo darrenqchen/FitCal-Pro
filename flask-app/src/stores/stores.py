@@ -82,6 +82,36 @@ def add_new_store():
     db.get_db().commit()
     
     return 'Success!'
+
+
+
+# Updating a store
+@stores.route('/stores/<id>', methods=['PUT'])
+def update_store(id):
+
+    # collecting data from the request object 
+    the_data = request.json
+    current_app.logger.info(the_data)
+
+    # extracting the variable
+    name = the_data['name']
+    rating = the_data['rating']
+    street = the_data['street']
+    city = the_data['city']
+    zip = the_data['zip']
+    country = the_data['country']
+
+    # Constructing the query
+    query = f'UPDATE Stores SET name = "{name}", rating = {rating}, street = "{street}", city = "{city}", zip = "{zip}", country = "{country}" WHERE storeID = {id};'
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return "Successfully updated store #{0}!".format(id)
+
+
 #------------Restaurants----------
 # Get all resturants from the DB
 @stores.route('/restaurants', methods=['GET'])
@@ -129,7 +159,6 @@ def add_new_restaurant():
     zip = the_data['zip']
     country = the_data['country']
     
-
     # Constructing the query
     query = 'insert into Restaurants (name, cuisine, rating, street, city, zip, country) values ("'
     query += name + '", "'

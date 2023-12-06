@@ -147,7 +147,7 @@ def add_new_routine():
     timeDuration = the_data['timeDuration']
 
     # Constructing the query
-    query = f'INSERT INTO Routines (name, difficulty, timeDuration) values ("{name}", "{difficulty}", "{timeDuration}")'
+    query = f'INSERT INTO Routines (name, difficulty, timeDuration) values ("{name}", "{difficulty}", {timeDuration})'
     current_app.logger.info(query)
 
     # executing and committing the insert statement 

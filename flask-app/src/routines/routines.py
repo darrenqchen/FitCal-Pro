@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
-routines = Blueprint('fitness', __name__)
+routines = Blueprint('routines', __name__)
 
 # Get all exercises from the DB
 @routines.route('/exercises', methods=['GET'])
@@ -50,8 +50,11 @@ def add_new_exercise():
     equipment = the_data['equipment']
     targetArea = the_data['targetArea']
 
-    # Constructing the query
-    query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) values ("{name}", {weight}, {reps}, {difficulty}, "{equipment}", "{targetArea}")'
+
+    # Constructing the query 
+    query = f'INSERT INTO Exercises (name, weight, reps, difficulty, equipment, targetArea) VALUES ("{name}", {weight}, {reps}, {difficulty}, "{equipment}", "{targetArea}")'
+
+
     current_app.logger.info(query)
 
     # executing and committing the insert statement 

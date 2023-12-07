@@ -5,22 +5,21 @@ from src import db
 
 meals = Blueprint('meals', __name__)
 
-#=====Meals========
-
-# Get all meals from the DB
+#=====Meals========  
+# Get all meals
 @meals.route('/meals', methods=['GET'])
-def get_meals():
-    cursor = db.get_db().cursor()
-    cursor.execute('SELECT mealID, name, calories, isVegan, mealTrackerID FROM Meals')
-    column_headers = [x[0] for x in cursor.description]
-    json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(column_headers, row)))
-    the_response = make_response(jsonify(json_data))
-    the_response.status_code = 200
-    the_response.mimetype = 'application/json'
-    return the_response
+def get_meal():
+   query = 'SELECT * FROM Meals'
+   current_app.logger.info(query)
+
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   column_headers = [x[0] for x in cursor.description]
+   json_data = []
+   the_data = cursor.fetchall()
+   for row in the_data:
+       json_data.append(dict(zip(column_headers, row)))
+   return jsonify(json_data)
 
 # Get meal details from a particular mealID
 @meals.route('/meals/<mealID>', methods=['GET'])
@@ -37,6 +36,7 @@ def get_meal_detail(mealID):
    for row in the_data:
        json_data.append(dict(zip(column_headers, row)))
    return jsonify(json_data)
+
 
 # Adding a meal
 @meals.route('/meals', methods=['POST'])
@@ -57,14 +57,6 @@ def add_new_meal():
    query += str(calories) + ', '
    query += str(isVegan) + ', '
    query += str(mealTrackerID) + ')'
-   current_app.logger.info(query)
-
-   # executing and committing the insert statement
-   cursor = db.get_db().cursor()
-   cursor.execute(query)
-   db.get_db().commit()
-  
-   return 'Success!'
 
 # Deletes a given meal
 @meals.route('/meals/<mealID>', methods=['DELETE'])

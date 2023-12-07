@@ -5,6 +5,21 @@ from src import db
 
 meals = Blueprint('meals', __name__)
 
+# Get all meals
+@meals.route('/meals', methods=['GET'])
+def get_meal():
+   query = 'SELECT * FROM Meals'
+   current_app.logger.info(query)
+
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   column_headers = [x[0] for x in cursor.description]
+   json_data = []
+   the_data = cursor.fetchall()
+   for row in the_data:
+       json_data.append(dict(zip(column_headers, row)))
+   return jsonify(json_data)
+
 # Get meal details from a particular mealID
 @meals.route('/meals/<mealID>', methods=['GET'])
 def get_meal_detail(mealID):
@@ -21,11 +36,41 @@ def get_meal_detail(mealID):
        json_data.append(dict(zip(column_headers, row)))
    return jsonify(json_data)
 
+# Gets all ingredients
+@meals.route('/ingredients', methods=['GET'])
+def get_ingredient():
+   query = 'SELECT * FROM Ingredients'
+   current_app.logger.info(query)
+
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   column_headers = [x[0] for x in cursor.description]
+   json_data = []
+   the_data = cursor.fetchall()
+   for row in the_data:
+       json_data.append(dict(zip(column_headers, row)))
+   return jsonify(json_data)
 
 # Gets a certain ingredient from the DB
 @meals.route('/ingredients/<id>', methods=['GET'])
 def get_ingredient_detail(id):
    query = 'SELECT ingredientID, name, price, calories, quantity, isVegan FROM Ingredients WHERE ingredientID = ' + str(id)
+   current_app.logger.info(query)
+
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   column_headers = [x[0] for x in cursor.description]
+   json_data = []
+   the_data = cursor.fetchall()
+   for row in the_data:
+       json_data.append(dict(zip(column_headers, row)))
+   return jsonify(json_data)
+
+
+# Gets all recipes
+@meals.route('/recipes', methods=['GET'])
+def get_recipe():
+   query = 'SELECT * FROM Recipes'
    current_app.logger.info(query)
 
    cursor = db.get_db().cursor()

@@ -2,10 +2,13 @@
 FitCal Pro is a versatile fitness tracker catering to diverse goals, from weight loss to professional sports. With an engaging user interface inspired by social media, it incorporates a dedicated progress tracker and a convenient 'new post' button for effortless logging of workouts and meals. The platform dynamically showcases personalized insights, including current goals, progress, and achievements based on user-logged data, enhancing the overall fitness journey.
 
 ## Overview
+NOTE: our repo current says only 3 people have had contributions to main excluding merge commits because we decided to lock the main branch and only allow it to be merged with pull requests. But on "Pulse" it says it correctly.
+
+![Alt text](image.png)
 
 Video:
 
-Appsmith repo: https://github.com/mdevine6427/FitCal-AppSmith
+Appsmith repo: https://github.com/mdevine6427/FitCalProAppSmithNEw
 
 - Our application routes are split into 4 different blueprints:
     - Meals: Keeps track of all the food related tracking like meals, ingredients, recipes, nutrients, and vegantips

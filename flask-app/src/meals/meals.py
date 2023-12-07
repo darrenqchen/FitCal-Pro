@@ -58,6 +58,37 @@ def add_new_meal():
    query += str(isVegan) + ', '
    query += str(mealTrackerID) + ')'
 
+   # executing and committing the insert statement
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   db.get_db().commit()
+  
+   return 'Success!'
+
+# Updating an meal
+@meals.route('/meals/<mealID>', methods=['PUT'])
+def update_meal(mealID):
+    
+    # collecting data from the request object 
+    the_data = request.json
+    current_app.logger.info(the_data)
+    
+    # extracting the variable
+    name = the_data['name']
+   calories = the_data['calories']
+   isVegan = the_data['isVegan']
+   mealTrackerID = the_data['mealTrackerID']
+
+    # Constructing the query
+    query = f'UPDATE Meals SET name = "{name}", calories = {calories}, mealTrackerID = {mealTrackerID}, isVegan = "{isVegan}" WHERE mealID = {mealID};'
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return "Successfully updated meal #{0}!".format(recipeID)
+
 # Deletes a given meal
 @meals.route('/meals/<mealID>', methods=['DELETE'])
 def delete_meal(mealID):
@@ -140,6 +171,35 @@ def add_new_recipe():
    db.get_db().commit()
   
    return 'Success!'
+
+# Updating an recipe
+@meals.route('/recipes/<recipeID>', methods=['PUT'])
+def update_recipe(recipeID):
+    
+    # collecting data from the request object 
+    the_data = request.json
+    current_app.logger.info(the_data)
+    
+    # extracting the variable
+    name = the_data['name']
+   rating = the_data['rating']
+   servingSize = the_data['servingSize']
+   allergens = the_data['allergens']
+   calories = the_data['calories']
+   timeToMake = the_data['timeToMake']
+   steps = the_data['steps']
+   isVegan = the_data['isVegan']
+
+    # Constructing the query
+    query = f'UPDATE Recipes SET name = "{name}", rating = {rating}, servingSize = {servingSize}, allergens = "{allergens}", calories = {calories}, timeToMake = {timeToMake}, steps = "{steps}", isVegan = "{isVegan}" WHERE recipeID = {recipeID};'
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return "Successfully updated recipe #{0}!".format(recipeID)
+
 
 # Deletes a created recipe
 @meals.route('/recipes/<id>', methods=['DELETE'])

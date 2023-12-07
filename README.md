@@ -8,11 +8,10 @@ Video:
 Appsmith repo: https://github.com/mdevine6427/FitCal-AppSmith
 
 - Our application routes are split into 4 different blueprints:
-    - Meals:
-    - Fitness:
+    - Meals: Keeps track of all the food related tracking like meals, ingredients, recipes, nutrients, and vegantips
+    - Fitness: Keeps track of all the fitness related tracking like routines and exercises
     - Tracking: Holds all the data for the trackers
-    - Stores:
-
+    - Stores: Keeps track of all the external related data like stores and restaurants
 
 
 ## MySQL + Flask Project
@@ -34,6 +33,7 @@ This repo contains a setup for spinning up 3 Docker containers:
 - To connect to the database container use port 3200
 - To connect to the web container use port 8001
 - To connect to the appsmith container use port 8080
+- To use the routes, you would use it like any other http request with GET, POST, PUT, and DELETE for the endpoints if they are there
 
 
 

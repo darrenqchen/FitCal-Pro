@@ -75,9 +75,9 @@ def update_meal(mealID):
     
     # extracting the variable
     name = the_data['name']
-   calories = the_data['calories']
-   isVegan = the_data['isVegan']
-   mealTrackerID = the_data['mealTrackerID']
+    calories = the_data['calories']
+    isVegan = the_data['isVegan']
+    mealTrackerID = the_data['mealTrackerID']
 
     # Constructing the query
     query = f'UPDATE Meals SET name = "{name}", calories = {calories}, mealTrackerID = {mealTrackerID}, isVegan = "{isVegan}" WHERE mealID = {mealID};'
@@ -87,7 +87,7 @@ def update_meal(mealID):
     cursor.execute(query)
     db.get_db().commit()
     
-    return "Successfully updated meal #{0}!".format(recipeID)
+    return "Successfully updated meal #{0}!".format(mealID)
 
 # Deletes a given meal
 @meals.route('/meals/<mealID>', methods=['DELETE'])
@@ -182,13 +182,13 @@ def update_recipe(recipeID):
     
     # extracting the variable
     name = the_data['name']
-   rating = the_data['rating']
-   servingSize = the_data['servingSize']
-   allergens = the_data['allergens']
-   calories = the_data['calories']
-   timeToMake = the_data['timeToMake']
-   steps = the_data['steps']
-   isVegan = the_data['isVegan']
+    rating = the_data['rating']
+    servingSize = the_data['servingSize']
+    allergens = the_data['allergens']
+    calories = the_data['calories']
+    timeToMake = the_data['timeToMake']
+    steps = the_data['steps']
+    isVegan = the_data['isVegan']
 
     # Constructing the query
     query = f'UPDATE Recipes SET name = "{name}", rating = {rating}, servingSize = {servingSize}, allergens = "{allergens}", calories = {calories}, timeToMake = {timeToMake}, steps = "{steps}", isVegan = "{isVegan}" WHERE recipeID = {recipeID};'
